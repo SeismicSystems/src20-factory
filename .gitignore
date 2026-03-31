@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+out/
+cache/
+target/
+
+# Foundry
+packages/contracts/out/
+packages/contracts/cache/
+broadcast/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Lockfiles (bun only)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Rust
+packages/api/target/
