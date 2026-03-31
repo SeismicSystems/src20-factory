@@ -95,7 +95,7 @@ cd packages/api && cargo run
 
 ## Testnet
 
-- **RPC**: `https://gcp-1.seismictest.net/rpc`
+- **RPC**: `https://gcp-2.seismictest.net/rpc`
 - **Network details**: [docs.seismic.systems/networks/testnet](https://docs.seismic.systems/networks/testnet)
 
 ## License

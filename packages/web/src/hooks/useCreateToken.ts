@@ -1,0 +1,53 @@
+import { useState } from "react";
+import { useShieldedWallet } from "seismic-react";
+import { createToken, type CreateTokenResult } from "@seismic/src20-sdk";
+
+interface UseCreateTokenParams {
+  name: string;
+  symbol: string;
+  initialSupply: string;
+}
+
+interface UseCreateTokenReturn {
+  deploy: () => Promise<void>;
+  isLoading: boolean;
+  error: string | null;
+  result: CreateTokenResult | null;
+}
+
+export function useCreateToken(
+  params: UseCreateTokenParams,
+): UseCreateTokenReturn {
+  const { walletClient } = useShieldedWallet();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<CreateTokenResult | null>(null);
+
+  const deploy = async () => {
+    if (!walletClient) {
+      setError("Wallet not connected");
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+    setResult(null);
+
+    try {
+      const supplyBigInt =
+        BigInt(params.initialSupply || "0") * BigInt(10 ** 18);
+      const tokenResult = await createToken(walletClient, {
+        name: params.name,
+        symbol: params.symbol,
+        initialSupply: supplyBigInt,
+      });
+      setResult(tokenResult);
+    } catch (err: any) {
+      setError(err.message || "Failed to deploy token");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { deploy, isLoading, error, result };
+}

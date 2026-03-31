@@ -38,7 +38,7 @@ cd packages/api && cargo build
 - Factory deploys full SRC20Token instances (not EIP-1167 clones) because SRC20 uses immutable fields for decimals and EIP-2612 domain separator
 - SRC20Token inherits from the canonical seismic-std-lib SRC20.sol — do NOT modify the base contract
 - All tokens get encrypted events automatically (Intelligence + Directory integration baked into base SRC20)
-- Testnet only (RPC: https://gcp-1.seismictest.net/rpc)
+- Testnet only (RPC: https://gcp-2.seismictest.net/rpc)
 - Default 18 decimals in CLI; API exposes decimals as option
 
 ## Seismic-Specific
