@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { injected } from "wagmi/connectors";
 import { useShieldedWallet } from "seismic-react";
@@ -9,6 +10,27 @@ export function App() {
   const { connect } = useConnect();
   const { disconnect } = useDisconnect();
   const { loaded, error: walletError } = useShieldedWallet();
+  const [pendingSwitch, setPendingSwitch] = useState(false);
+
+  const handleConnect = async () => {
+    if (pendingSwitch) {
+      setPendingSwitch(false);
+      try {
+        await (window as any).ethereum?.request({
+          method: "wallet_requestPermissions",
+          params: [{ eth_accounts: {} }],
+        });
+      } catch {
+        return;
+      }
+    }
+    connect({ connector: injected() });
+  };
+
+  const handleUseDifferentWallet = () => {
+    setPendingSwitch(true);
+    disconnect();
+  };
 
   return (
     <div className="min-h-screen bg-seismic-bg flex items-center justify-center p-4 relative">
@@ -39,7 +61,7 @@ export function App() {
                 Connect your wallet to deploy an SRC20 token
               </p>
               <button
-                onClick={() => connect({ connector: injected() })}
+                onClick={handleConnect}
                 className="w-full rounded-lg bg-[rgba(130,90,109,0.75)] hover:bg-[rgba(130,90,109,0.95)] border border-[rgba(255,255,255,0.18)] hover:border-[rgba(255,255,255,0.3)] px-4 py-2.5 text-seismic-cream font-medium font-suisse tracking-wide transition-all duration-150 hover:scale-[1.01] active:scale-[0.99]"
               >
                 Connect Wallet
@@ -52,7 +74,7 @@ export function App() {
                 Initializing shielded wallet…
               </p>
               <button
-                onClick={() => disconnect()}
+                onClick={handleUseDifferentWallet}
                 className="mt-4 text-xs text-seismic-cream/30 hover:text-seismic-cream/70 font-suisse transition-colors"
               >
                 Use a different wallet
@@ -64,7 +86,7 @@ export function App() {
                 {humanizeError(walletError)}
               </p>
               <button
-                onClick={() => disconnect()}
+                onClick={handleUseDifferentWallet}
                 className="mt-4 text-xs text-seismic-cream/30 hover:text-seismic-cream/70 font-suisse transition-colors"
               >
                 Use a different wallet
