@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useShieldedWallet } from "seismic-react";
 import { createToken, type CreateTokenResult } from "@seismic/src20-sdk";
+import { humanizeError } from "../utils/humanizeError";
 
 interface UseCreateTokenParams {
   name: string;
@@ -42,8 +43,8 @@ export function useCreateToken(
         initialSupply: supplyBigInt,
       });
       setResult(tokenResult);
-    } catch (err: any) {
-      setError(err.message || "Failed to deploy token");
+    } catch (err) {
+      setError(humanizeError(err));
     } finally {
       setIsLoading(false);
     }

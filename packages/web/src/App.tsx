@@ -1,10 +1,12 @@
 import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { injected } from "wagmi/connectors";
 import { useShieldedWallet } from "seismic-react";
 import { CreateTokenForm } from "./components/CreateTokenForm";
+import { humanizeError } from "./utils/humanizeError";
 
 export function App() {
   const { address, isConnected } = useAccount();
-  const { connect, connectors } = useConnect();
+  const { connect } = useConnect();
   const { disconnect } = useDisconnect();
   const { loaded, error: walletError } = useShieldedWallet();
 
@@ -36,15 +38,12 @@ export function App() {
               <p className="text-seismic-cream/40 text-sm font-suisse">
                 Connect your wallet to deploy an SRC20 token
               </p>
-              {connectors.map((connector) => (
-                <button
-                  key={connector.uid}
-                  onClick={() => connect({ connector })}
-                  className="w-full rounded-lg bg-[rgba(130,90,109,0.75)] hover:bg-[rgba(130,90,109,0.95)] border border-[rgba(255,255,255,0.18)] hover:border-[rgba(255,255,255,0.3)] px-4 py-2.5 text-seismic-cream font-medium font-suisse tracking-wide transition-all duration-150 hover:scale-[1.01] active:scale-[0.99]"
-                >
-                  Connect {connector.name}
-                </button>
-              ))}
+              <button
+                onClick={() => connect({ connector: injected() })}
+                className="w-full rounded-lg bg-[rgba(130,90,109,0.75)] hover:bg-[rgba(130,90,109,0.95)] border border-[rgba(255,255,255,0.18)] hover:border-[rgba(255,255,255,0.3)] px-4 py-2.5 text-seismic-cream font-medium font-suisse tracking-wide transition-all duration-150 hover:scale-[1.01] active:scale-[0.99]"
+              >
+                Connect Wallet
+              </button>
             </div>
           ) : !loaded ? (
             <div className="text-center py-8">
@@ -52,12 +51,24 @@ export function App() {
               <p className="text-seismic-cream/40 text-sm font-suisse">
                 Initializing shielded wallet…
               </p>
+              <button
+                onClick={() => disconnect()}
+                className="mt-4 text-xs text-seismic-cream/30 hover:text-seismic-cream/70 font-suisse transition-colors"
+              >
+                Use a different wallet
+              </button>
             </div>
           ) : walletError ? (
             <div className="text-center py-8">
               <p className="text-red-400/80 text-sm font-suisse">
-                {walletError}
+                {humanizeError(walletError)}
               </p>
+              <button
+                onClick={() => disconnect()}
+                className="mt-4 text-xs text-seismic-cream/30 hover:text-seismic-cream/70 font-suisse transition-colors"
+              >
+                Use a different wallet
+              </button>
             </div>
           ) : (
             <>
