@@ -4,7 +4,7 @@ import { seismicTestnet } from "seismic-viem";
 
 export const wagmiConfig = createConfig({
   chains: [seismicTestnet],
-  connectors: [injected()],
+  connectors: [injected({ target: "metaMask" })],
   transports: {
     [seismicTestnet.id]: http(),
   },

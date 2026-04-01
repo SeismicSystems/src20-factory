@@ -24,7 +24,7 @@ export function App() {
         return;
       }
     }
-    connect({ connector: injected() });
+    connect({ connector: injected({ target: "metaMask" }) });
   };
 
   const handleUseDifferentWallet = () => {
@@ -64,7 +64,7 @@ export function App() {
                 onClick={handleConnect}
                 className="w-full rounded-lg bg-[rgba(130,90,109,0.75)] hover:bg-[rgba(130,90,109,0.95)] border border-[rgba(255,255,255,0.18)] hover:border-[rgba(255,255,255,0.3)] px-4 py-2.5 text-seismic-cream font-medium font-suisse tracking-wide transition-all duration-150 hover:scale-[1.01] active:scale-[0.99]"
               >
-                Connect Wallet
+                Connect MetaMask
               </button>
             </div>
           ) : !loaded ? (
