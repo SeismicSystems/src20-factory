@@ -10,11 +10,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "bun build src/bin.ts --outfile dist/bin.js --target node --external seismic-viem --external viem --external prompts --external picocolors --external yargs",
+    "dev": "bun build src/bin.ts --outfile dist/bin.js --target node --external seismic-viem --external viem --external prompts --external picocolors --external yargs --watch"
   },
   "dependencies": {
-    "@seismic/src20-sdk": "workspace:*",
     "seismic-viem": "^1.1.2",
     "viem": "^2.23.2",
     "prompts": "^2.4.2",
