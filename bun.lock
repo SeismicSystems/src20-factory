@@ -30,14 +30,13 @@
     "packages/sdk": {
       "name": "@seismic/src20-sdk",
       "version": "0.1.0",
-      "dependencies": {
+      "devDependencies": {
         "seismic-viem": "^1.1.2",
+        "typescript": "^5.7.0",
         "viem": "^2.23.2",
       },
-      "devDependencies": {
-        "typescript": "^5.7.0",
-      },
       "peerDependencies": {
+        "seismic-viem": "^1.1.2",
         "viem": "^2.0.0",
       },
     },

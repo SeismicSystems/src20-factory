@@ -3,24 +3,52 @@
   "version": "0.1.0",
   "description": "SDK for deploying SRC20 tokens via the Seismic factory contract",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/_cjs/index.js",
+  "module": "./dist/_esm/index.js",
+  "types": "./dist/_types/index.d.ts",
+  "typings": "./dist/_types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/_cjs/index.js",
+      "import": "./dist/_esm/index.js",
+      "types": "./dist/_types/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "dist"
+    "dist/_cjs/*.js",
+    "dist/_esm/*.js",
+    "dist/_types/**/*.d.ts",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "clean": "rm -rf dist",
+    "build": "bun run build:cjs && bun run build:esm && bun run build:types",
+    "build:cjs": "bun build src/index.ts --outdir dist/_cjs --target browser --format cjs --external viem --external seismic-viem",
+    "build:esm": "bun build src/index.ts --outdir dist/_esm --target browser --format esm --external viem --external seismic-viem",
+    "build:types": "tsc --project tsconfig.types.json",
     "dev": "tsc --watch"
   },
-  "dependencies": {
-    "seismic-viem": "^1.1.2",
-    "viem": "^2.23.2"
+  "peerDependencies": {
+    "viem": "^2.0.0",
+    "seismic-viem": "^1.1.2"
   },
   "devDependencies": {
+    "viem": "^2.23.2",
+    "seismic-viem": "^1.1.2",
     "typescript": "^5.7.0"
   },
-  "peerDependencies": {
-    "viem": "^2.0.0"
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeismicSystems/src20-factory.git"
   },
-  "license": "AGPL-3.0"
+  "keywords": [
+    "seismic",
+    "src20",
+    "token",
+    "web3",
+    "typescript"
+  ],
+  "author": "Seismic Systems"
 }
