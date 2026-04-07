@@ -1,6 +1,6 @@
 {
-  "name": "@seismic/src20-sdk",
-  "version": "0.1.0",
+  "name": "create-src20",
+  "version": "0.1.2",
   "description": "SDK for deploying SRC20 tokens via the Seismic factory contract",
   "type": "module",
   "main": "./dist/_cjs/index.js",
