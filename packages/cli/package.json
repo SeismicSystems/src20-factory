@@ -1,10 +1,10 @@
 {
-  "name": "create-src20",
+  "name": "@seismic/src20factory",
   "version": "0.1.0",
   "description": "Create an SRC20 token on Seismic in one command",
   "type": "module",
   "bin": {
-    "create-src20": "dist/bin.js"
+    "src20factory": "dist/bin.js"
   },
   "files": [
     "dist"
@@ -14,7 +14,6 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@seismic/src20-sdk": "workspace:*",
     "seismic-viem": "^1.1.2",
     "viem": "^2.23.2",
     "prompts": "^2.4.2",
@@ -22,6 +21,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@seismic/src20-sdk": "workspace:*",
     "@types/prompts": "^2.4.9",
     "@types/yargs": "^17.0.33",
     "typescript": "^5.7.0"
