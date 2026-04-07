@@ -2,13 +2,11 @@
   "private": true,
   "workspaces": [
     "packages/sdk",
-    "packages/cli",
     "packages/web"
   ],
   "scripts": {
     "build:sdk": "bun run --cwd packages/sdk build",
     "publish:sdk": "bun run build:sdk && npm publish -w packages/sdk",
-    "build:cli": "bun run --cwd packages/cli build",
     "build:web": "bun run --cwd packages/web build",
     "dev:web": "bun run --cwd packages/web dev",
     "contract:build": "cd packages/contracts && sforge build",
