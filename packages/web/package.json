@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@seismic/src20-sdk": "workspace:*",
+    "create-src20": "workspace:*",
     "seismic-viem": "^1.1.2",
     "seismic-react": "^1.1.1",
     "viem": "^2.23.2",

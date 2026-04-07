@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useShieldedWallet } from "seismic-react";
-import { createToken, type CreateTokenResult } from "@seismic/src20-sdk";
+import { createToken, type CreateTokenResult } from "create-src20";
 import { humanizeError } from "../utils/humanizeError";
 
 interface UseCreateTokenParams {

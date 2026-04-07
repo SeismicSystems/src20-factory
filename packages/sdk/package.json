@@ -1,26 +1,62 @@
 {
-  "name": "@seismic/src20-sdk",
-  "version": "0.1.0",
-  "description": "SDK for deploying SRC20 tokens via the Seismic factory contract",
+  "name": "create-src20",
+  "version": "0.1.2",
+  "description": "Create and interact with SRC20 tokens on Seismic",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/_cjs/index.js",
+  "module": "./dist/_esm/index.js",
+  "types": "./dist/_types/index.d.ts",
+  "typings": "./dist/_types/index.d.ts",
+  "bin": {
+    "create-src20": "dist/bin.js"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/_cjs/index.js",
+      "import": "./dist/_esm/index.js",
+      "types": "./dist/_types/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "dist"
+    "dist/_cjs/*.js",
+    "dist/_esm/*.js",
+    "dist/_types/**/*.d.ts",
+    "dist/bin.js",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "clean": "rm -rf dist",
+    "build": "bun run build:cjs && bun run build:esm && bun run build:bin && bun run build:types",
+    "build:cjs": "bun build src/index.ts --outdir dist/_cjs --target browser --format cjs --packages external",
+    "build:esm": "bun build src/index.ts --outdir dist/_esm --target browser --format esm --packages external",
+    "build:bin": "bun build src/bin.ts --outdir dist --target node --format esm --packages external",
+    "build:types": "tsc --project tsconfig.types.json",
     "dev": "tsc --watch"
   },
   "dependencies": {
     "seismic-viem": "^1.1.2",
-    "viem": "^2.23.2"
+    "viem": "^2.23.2",
+    "prompts": "^2.4.2",
+    "picocolors": "^1.1.1",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/prompts": "^2.4.9",
+    "@types/yargs": "^17.0.33",
     "typescript": "^5.7.0"
   },
-  "peerDependencies": {
-    "viem": "^2.0.0"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeismicSystems/src20-factory.git"
   },
-  "license": "AGPL-3.0"
+  "keywords": [
+    "seismic",
+    "src20",
+    "token",
+    "web3",
+    "typescript"
+  ],
+  "author": "Seismic Systems"
 }

@@ -5,7 +5,7 @@ import { hideBin } from "yargs/helpers";
 import { privateKeyToAccount } from "viem/accounts";
 import { http } from "viem";
 import { createShieldedWalletClient, seismicTestnet } from "seismic-viem";
-import { createToken } from "@seismic/src20-sdk";
+import { createToken } from "./createToken.js";
 
 interface CliArgs {
   name?: string;
