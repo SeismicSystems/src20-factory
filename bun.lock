@@ -8,13 +8,12 @@
       },
     },
     "packages/cli": {
-      "name": "create-src20",
+      "name": "create-src20-cli-deprecated",
       "version": "0.1.0",
       "bin": {
         "create-src20": "dist/bin.js",
       },
       "dependencies": {
-        "@seismic/src20-sdk": "workspace:*",
         "picocolors": "^1.1.1",
         "prompts": "^2.4.2",
         "seismic-viem": "^1.1.2",
@@ -28,24 +27,30 @@
       },
     },
     "packages/sdk": {
-      "name": "@seismic/src20-sdk",
-      "version": "0.1.0",
-      "devDependencies": {
-        "seismic-viem": "^1.1.2",
-        "typescript": "^5.7.0",
-        "viem": "^2.23.2",
+      "name": "create-src20",
+      "version": "0.1.2",
+      "bin": {
+        "create-src20": "dist/bin.js",
       },
-      "peerDependencies": {
+      "dependencies": {
+        "picocolors": "^1.1.1",
+        "prompts": "^2.4.2",
         "seismic-viem": "^1.1.2",
-        "viem": "^2.0.0",
+        "viem": "^2.23.2",
+        "yargs": "^17.7.2",
+      },
+      "devDependencies": {
+        "@types/prompts": "^2.4.9",
+        "@types/yargs": "^17.0.33",
+        "typescript": "^5.7.0",
       },
     },
     "packages/web": {
       "name": "@seismic/src20-web",
       "version": "0.1.0",
       "dependencies": {
-        "@seismic/src20-sdk": "workspace:*",
         "@tanstack/react-query": "^5.62.16",
+        "create-src20": "workspace:*",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "seismic-react": "^1.1.1",
@@ -322,8 +327,6 @@
 
     "@scure/bip39": ["@scure/bip39@1.6.0", "", { "dependencies": { "@noble/hashes": "~1.8.0", "@scure/base": "~1.2.5" } }, "sha512-+lF0BbLiJNwVlev4eKelw1WWLaiKXw7sSl8T6FvBlWkdX+94aGJ4o8XjUdlyhTCjd8c+B3KT3JfS8P0bLRNU6A=="],
 
-    "@seismic/src20-sdk": ["@seismic/src20-sdk@workspace:packages/sdk"],
-
     "@seismic/src20-web": ["@seismic/src20-web@workspace:packages/web"],
 
     "@socket.io/component-emitter": ["@socket.io/component-emitter@3.1.2", "", {}, "sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA=="],
@@ -592,7 +595,9 @@
 
     "crc-32": ["crc-32@1.2.2", "", { "bin": { "crc32": "bin/crc32.njs" } }, "sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ=="],
 
-    "create-src20": ["create-src20@workspace:packages/cli"],
+    "create-src20": ["create-src20@workspace:packages/sdk"],
+
+    "create-src20-cli-deprecated": ["create-src20-cli-deprecated@workspace:packages/cli"],
 
     "cross-fetch": ["cross-fetch@4.1.0", "", { "dependencies": { "node-fetch": "^2.7.0" } }, "sha512-uKm5PU+MHTootlWEY+mZ4vvXoCn4fLQxT9dSc1sXVMSFkINTJVN8cAQROpwcKm8bJ/c7rgZVIBWzH5T78sNZZw=="],
 

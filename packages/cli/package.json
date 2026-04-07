@@ -1,5 +1,5 @@
 {
-  "name": "create-src20",
+  "name": "create-src20-cli-deprecated",
   "version": "0.1.0",
   "description": "Create an SRC20 token on Seismic in one command",
   "type": "module",
@@ -14,7 +14,6 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@seismic/src20-sdk": "workspace:*",
     "seismic-viem": "^1.1.2",
     "viem": "^2.23.2",
     "prompts": "^2.4.2",
