@@ -1,0 +1,2 @@
+forge-std/=lib/forge-std/src/
+seismic-std-lib/=dependencies/seismic-std-lib-0.1.3/
