@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
-import {SRC20Factory} from "../src/SRC20Factory.sol";
+import {SRC20Factory} from "seismic-std-lib/SRC20Factory.sol";
 
 contract DeployScript is Script {
     function run() public {

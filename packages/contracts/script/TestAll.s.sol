@@ -2,8 +2,8 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
-import {SRC20Factory} from "../src/SRC20Factory.sol";
-import {SRC20Token} from "../src/SRC20Token.sol";
+import {SRC20Factory} from "seismic-std-lib/SRC20Factory.sol";
+import {SRC20Token} from "seismic-std-lib/SRC20Token.sol";
 
 contract TestAllScript is Script {
     address constant FACTORY = 0x87F850cbC2cFfac086F20d0d7307E12d06fA2127;

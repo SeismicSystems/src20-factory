@@ -12,6 +12,9 @@ packages/contracts/out/
 packages/contracts/cache/
 broadcast/
 
+# Soldeer dependencies
+packages/contracts/dependencies/
+
 # Environment
 .env
 .env.local
