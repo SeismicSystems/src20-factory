@@ -8,4 +8,4 @@ via_ir = false
 remappings_generate = false
 
 [dependencies]
-seismic-std-lib = "0.1.3"
+seismic-std-lib = "0.1.4"
